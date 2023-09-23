@@ -22,3 +22,26 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+|Column|Type|Options|
+email	string	null: false, unique: true
+password	string	null: false
+nickname	string	null: false
+
+Column	Type	Options
+name	string	null: false
+description	text	null: false
+price	integer	null: false
+user	references	null: false, foreign_key: true
+
+
+Column	Type	Options
+user	references	null: false, foreign_key: true
+item	references	null: false, foreign_key: true
+
+Column	Type	Options
+postal_code	string	null: false
+prefecture	string	null: false
+city	string	null: false
+purchase_record	references	null: false, foreign_key: true
+
