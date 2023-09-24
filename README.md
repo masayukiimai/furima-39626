@@ -32,15 +32,14 @@ first_name_kana   string  null: false
 last_name_kana    string  null: false 
 date_of_birth    date   null: false 
 
-password	string	null: false
+encrypted_password	string	null: false
 nickname	string	null: false
 
 has_many :items
 has_many :purchase_records
 
 Column	Type	Options
- items
- image  string      null: false                    
+ items                   
   name  string      null: false                    
  description  text        null: false                    
  category_id  integer     null: false                    
@@ -58,13 +57,6 @@ has_one :purchase_record
 Column	Type	Options
 purchase_records
  Column              Type       Options                        
- token               string      null: false                    
- postal_code         string      null: false                    
- prefecture_id       integer     null: false                    
- city                string      null: false                    
- address             string      null: false                    
- building_name       string                                     
- phone_number        string      null: false                    
  user                references  null: false, foreign_key: true 
  item                references  null: false, foreign_key: true 
 
