@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-|Column|Type|Options|
+Column  Type  Options
 email	string	null: false, unique: true
 password	string	null: false
 nickname	string	null: false
