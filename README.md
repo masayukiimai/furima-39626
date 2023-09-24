@@ -21,9 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
+-ColumnTypeOptions
 
-
-|Column|Type|Options|
 users
 email	string	null: false, unique: true
 first_name	string	null: false
@@ -31,7 +30,6 @@ last_name   string null: false
 first_name_kana   string  null: false 
 last_name_kana    string  null: false 
 date_of_birth    date   null: false 
-
 encrypted_password	string	null: false
 nickname	string	null: false
 
@@ -39,7 +37,8 @@ has_many :items
 has_many :purchase_records
 
 Column	Type	Options
- items                   
+
+ items
   name  string      null: false                    
  description  text        null: false                    
  category_id  integer     null: false                    
