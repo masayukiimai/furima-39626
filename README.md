@@ -62,6 +62,7 @@ has_one :purchase_record
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping_address
 
 ##shipping_addresses
 | Column         | Type       | Options                        |
