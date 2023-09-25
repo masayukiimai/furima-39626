@@ -23,9 +23,9 @@ Things you may want to cover:
 
 -ColumnTypeOptions
 
-
-| Column           | Type   | Options                              |
-user      
+##user
+| Column           | Type   | Options                              | 
+|------------------|--------|--------------------------------------|
 | email            | string | null: false, unique: true            |
 | first_name       | string | null: false                          |
 | last_name        | string | null: false                          |
@@ -34,11 +34,13 @@ user
 | date_of_birth    | date   | null: false                          |
 | encrypted_password | string | null: false                        |
 | nickname         | string | null: false                          
+### Association
 has_many :items
 has_many :purchase_records
 
+##item
 | Column           | Type        | Options                               |
-item
+|------------------|-------------|---------------------------------------|
 | name             | string      | null: false                           |
 | description      | text        | null: false                           |
 | category_id      | integer     | null: false                           |
@@ -47,21 +49,23 @@ item
 | prefecture_id    | integer     | null: false                           |
 | handling_time_id | integer     | null: false                           |
 | price            | integer     | null: false                           |
-| user             | references  | null: false, foreign_key: true         |
+| user             | references  | null: false, foreign_key: true        |
+### Association
 belongs_to :user
 has_one :purchase_record
 
+##purchase_records
 | Column | Type       | Options                        |
 |--------|------------|--------------------------------|
-purchase_records
 | user   | references | null: false, foreign_key: true |
 | item   | references | null: false, foreign_key: true |
+### Association
 - belongs_to :user
 - belongs_to :item
 
-
+##shipping_addresses
 | Column         | Type       | Options                        |
-shipping_addresses
+|----------------|------------|--------------------------------|
 | postal_code    | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
@@ -69,4 +73,5 @@ shipping_addresses
 | building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
 | purchase_record| references | null: false, foreign_key: true |
+### Association
 belongs_to :purchase_record
