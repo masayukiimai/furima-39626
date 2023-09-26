@@ -1,13 +1,8 @@
-class ApplicationController < ActionController::Base
-  before_action :basic_auth
+Rails.application.routes.draw do
+  devise_for :users
+  get 'items/index'
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-
-  private
-
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]  #
-      username == 'aun' && password == '1126'
-    end
-  end
+  # Defines the root path route ("/")
+  # root "articles#index"
 end
