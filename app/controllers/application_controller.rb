@@ -1,15 +1,11 @@
-Rails.application.routes.draw do
-  # デフォルトでdeviseが提供するルーティングを追加し、カスタムコントローラーも指定します
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
-    confirmations: 'users/confirmations',
-    unlocks: 'users/unlocks'
-  }
 
-  # 他のルーティング...
-  resources :users, only: [:new, :create, :edit, :update, :show]
-  # rootパスも設定してください。例えば、users#indexをrootとして設定する場合：
-  root 'users#index'
-end
+class ApplicationController < ActionController::Base
+  before_action :basic_auth
+  private
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]  #
+      username == 'aun' && password == '1126'
+    end
+  end
