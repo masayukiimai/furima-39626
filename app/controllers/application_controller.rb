@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'items/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # デフォルトでdeviseが提供するルーティングを追加し、カスタムコントローラーも指定します
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    confirmations: 'users/confirmations',
+    unlocks: 'users/unlocks'
+  }
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # 他のルーティング...
+  resources :users, only: [:new, :create, :edit, :update, :show]
+  # rootパスも設定してください。例えば、users#indexをrootとして設定する場合：
+  root 'users#index'
 end
