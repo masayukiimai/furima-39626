@@ -1,4 +1,5 @@
 
+
 class ApplicationController < ActionController::Base
   before_action :basic_auth
   private
@@ -9,3 +10,4 @@ class ApplicationController < ActionController::Base
       username == 'aun' && password == '1126'
     end
   end
+end
