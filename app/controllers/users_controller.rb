@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 
  class UsersController < ApplicationController
     def new
@@ -7,6 +6,7 @@
     
     def index
       @users = User.all
+      @user = User.new
     end
   
     def create
@@ -46,14 +46,3 @@
   
   
 
-=======
-class UsersController < ApplicationController
-    def index
-      @users = User.all
-      @user = User.new
-    end
-  
-    # ... 他のアクション ...
-  
-end
->>>>>>> Stashed changes
