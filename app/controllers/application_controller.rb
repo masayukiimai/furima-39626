@@ -14,8 +14,10 @@ def configure_permitted_parameters
 end
 
   private
+  private
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  end
   end
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
@@ -23,4 +25,4 @@ end
       username == 'aun' && password == '1126'
     end
   end
-end
+
