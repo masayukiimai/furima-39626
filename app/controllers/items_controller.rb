@@ -48,7 +48,7 @@
 
 
       def item_params
-        params.require(:item).permit(:name, :description, :price,) # ここに許可する属性を列挙します
+        params.require(:item).permit(:name, :description, :price,) 
       end
     end
    
