@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+ #error_explanation li {
+  color: red;
+}
+
+body {
+  position: relative;
+}
+.logout-container {
+  position: relative; /* ボタンの位置を親要素内で絶対位置指定するための設定 */
+}
+
+.logout-button {
+  position: absolute;
+  right: 0; /* 右端に配置 */
+  top: 50%; /* 親要素の中央に配置 */
+  transform: translateY(-50%); /* 縦方向の中央揃えの微調整 */
+  /* 必要に応じてマージンやパディングも追加 */
+}
+
+.error-message {
+  text-align: center;
+}
