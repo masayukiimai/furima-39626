@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   def new
     @item = Item.new
   end
@@ -11,12 +12,19 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  before_action :authenticate_user!, only: [:new, :create]
+
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :category_id, :condition_id,  :shipping_fee_id, :prefecture_id, :delivery_time_id,  :user)
+    params.require(:item).permit(:name, :description, :price, :category_id, :condition_id,  :shipping_fee_id, :prefecture_id, :delivery_time_id).merge(user: current_user)
+  end
+end
+
+
+
+
+
   end
 end
 
