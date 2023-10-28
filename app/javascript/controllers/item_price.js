@@ -1,7 +1,9 @@
-document.addEventListener('DOMContentLoaded', function(){
+function setupPriceCalculation() {
   const priceInput = document.getElementById('item-price');
   const addTax = document.getElementById('add-tax-price');
   const profit = document.getElementById('profit');
+
+  if (!priceInput) return; // 価格入力フィールドが存在しない場合は終了
 
   priceInput.addEventListener('input', function(){
     const inputValue = priceInput.value;
@@ -12,4 +14,9 @@ document.addEventListener('DOMContentLoaded', function(){
     addTax.textContent = fee;
     profit.textContent = gains;
   });
-});
+}
+
+
+window.addEventListener('turbo:load', setupPriceCalculation);
+export default setupPriceCalculation;
+
