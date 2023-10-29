@@ -21,8 +21,8 @@ class Item < ApplicationRecord
   validates :region_id, presence: true, inclusion: { in: 0..48 }  # 48項目（---と47都道府県）
   validates :shipping_time_id, presence: true, inclusion: { in: 0..3 }  # 発送までの日数は0~3の範囲
   validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_time_id, numericality: { other_than: 0, message: 'must be selected' }
-  validates :price, format: { with: /\A[0-9]+\z/, message: 'must be a number' }
-  validates :user, presence: true
+
+  
 
   
 end
