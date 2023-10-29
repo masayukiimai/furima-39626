@@ -5,18 +5,24 @@ class ItemsController < ApplicationController
     @item.errors.add(:base, flash[:errors]) if flash[:errors].present?
   end
   
+  class ItemsController < ApplicationController
 
-  def create
-    @item = current_user.items.build(item_params)
-    if @item.save
-      redirect_to root_path 
-    else
-      flash[:errors] = @item.errors.full_messages
-      redirect_to new_item_path
+    
+  
+    def create
+      @item = Item.new(item_params)
+      if @item.save
+        redirect_to root_path 
+      else
+        render :new
+      end
     end
+  
+    
+  
   end
   
-
+  
   private
 
   def item_params

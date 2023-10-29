@@ -79,9 +79,47 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Image can't be blank")
   end
-end
+  it 'カテゴリーが---では出品できない' do
+    @item.category_id = 0 
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Category must be selected')
+  end
 
+  it '商品の状態が---では出品できない' do
+    @item.condition_id = 0 
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Condition must be selected')
+  end
 
-      
+  it '配送料の負担が---では出品できない' do
+    @item.shipping_fee_id = 0 
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Shipping fee must be selected')
+  end
+
+  it '発送元の地域が---では出品できない' do
+    @item.region_id = 0 
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Region must be selected')
+  end
+
+  it '発送までの日数が---では出品できない' do
+    @item.shipping_time_id = 0 
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Shipping time must be selected')
+  end
+
+  it '価格に半角数字以外が含まれている場合は出品できない' do
+    @item.price = '１０００'
+    @item.valid?
+    expect(@item.errors.full_messages).to include('Price is not a number')
+  end
+
+  it 'userが紐付いていなければ出品できない' do
+    @item.user = nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include('User must exist')
+  end
+end   
 end
 end
