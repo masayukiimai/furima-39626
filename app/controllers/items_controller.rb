@@ -2,10 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   def new
     @item = Item.new
-    @item.errors.add(:base, flash[:errors]) if flash[:errors].present?
   end
   
-  class ItemsController < ApplicationController
 
     
   
@@ -20,7 +18,7 @@ class ItemsController < ApplicationController
   
     
   
-  end
+  
   
   
   private
