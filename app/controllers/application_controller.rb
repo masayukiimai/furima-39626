@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
- 
+  before_action :set_current_request_details
 
 
   protected
@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
  
 
   private
+  def set_current_request_details
+    ActiveStorage::Current.url_options = {
+      host: request.base_url,
+      protocol: request.protocol
+    }
+  end
   def configure_permitted_parameters
   devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
   end

@@ -42,22 +42,25 @@
     </div>
     <%# /商品名と商品説明 %>
 
-    <%# 商品の詳細 %>
-    <div class="items-detail">
-      <div class="weight-bold-text">商品の詳細</div>
-      <div class="form">
-        <div class="weight-bold-text">
-          カテゴリー
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
-          <span class="indispensable">必須</span>
-        </div>
-         <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+   <%# 商品の詳細 %>
+<div class="items-detail">
+  <div class="weight-bold-text">商品の詳細</div>
+  <div class="form">
+    <div class="weight-bold-text">
+      カテゴリー
+      <span class="indispensable">必須</span>
     </div>
-      </div>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+
+    <div class="weight-bold-text">
+      商品の状態
+      <span class="indispensable">必須</span>
     </div>
-    <%# /商品の詳細 %>
+    <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+  </div>
+</div>
+<%# /商品の詳細 %>
+
 
     <%# 配送について %>
     <div class="items-detail">
