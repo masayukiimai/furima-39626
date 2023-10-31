@@ -129,7 +129,7 @@
         <% if @items.present? %> <!-- 商品が存在する場合 -->
             <% @items.each do |item| %>
                 <li class='list'>
-                    <%= link_to "#" do %>
+                   <%= link_to item_path(item) do %>
                         <div class='item-img-content'>
                             <%= image_tag item.image.url, class: "item-img" if item.image.attached? %>
                         </div>
@@ -155,7 +155,7 @@
             <% end %>
         <% else %> <!-- 商品が存在しない場合はダミーを表示 -->
             <li class='list'>
-                <%= link_to '#' do %>
+               <%= link_to item_path(item) do %>
                     <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
                     <div class='item-info'>
                         <h3 class='item-name'>
