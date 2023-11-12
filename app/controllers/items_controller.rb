@@ -2,8 +2,9 @@
 
 
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+ 
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :move_to_index, only: [:edit, :update]
   def new
     @item = Item.new
@@ -28,7 +29,7 @@ class ItemsController < ApplicationController
   
 def show
   @item = Item.find(params[:id])
-  @is_sold_out = @item.sold_out?
+
 end
 
   def edit
@@ -58,7 +59,7 @@ end
   def move_to_index
   redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
   end
-end
+
 
 
 
