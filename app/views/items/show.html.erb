@@ -7,27 +7,16 @@
      <%= @item.name %>
     </h2>
     <div class="item-img-content">
-         <%= image_tag @item.default_item.jpg, class:"item-box-img" if @item.image.attached? %>
+        <%= image_tag(@item.image.attached? ? @item.image.url : 'default_item.jpg', class: "item-box-img") %>
+
     <%# 商品が売れている場合は、sold outを表示しましょう %>
   <% if @item.sold_out? %>
   <% soldout %>
 <% end %>
 
-
-<% @items.each do |item| %>
-  <div class="item">
-    <%= link_to item_path(item) do %>
-      <%= image_tag item.default_item.jpg if item.image.attached? %>
-      <div>
-        <h3><%= item.name %></h3>
-        <p><%= item.price %>円</p>
-        <p><%= item.shipping_fee.name %></p> 
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
       
+
+
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
