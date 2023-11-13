@@ -7,19 +7,11 @@
      <%= @item.name %>
     </h2>
     <div class="item-img-content">
-        <%= image_tag(@item.image.attached? ? @item.image.url : 'default_item.jpg', class: "item-box-img") %>
-
+   <%= image_tag(@item.image.attached? ? @item.image.url : 'default_item.jpg', class: "item-box-img") %>
     <%# 商品が売れている場合は、sold outを表示しましょう %>
   <% if @item.sold_out? %>
   <% soldout %>
 <% end %>
-
-      
-
-
-
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-
    </span>
   <% if user_signed_in? && current_user.id == @item.user_id %>
       <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
@@ -34,36 +26,38 @@
     <table class="detail-table">
       <tbody>
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
-          <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
-        </tr>
+       <tr>
+  <th class="detail-item">出品者</th>
+  <td class="detail-value"><%= @item.user.nickname %></td> <!-- 出品者のユーザーネームを表示 -->
+</tr>
+
+<tr>
+  <th class="detail-item">カテゴリー</th>
+  <td class="detail-value"><%= @item.category.name %></td>
+</tr>
+<tr>
+  <th class="detail-item">商品の状態</th>
+  <td class="detail-value"><%= @item.condition.name %></td>
+</tr>
+<tr>
+  <th class="detail-item">配送料の負担</th>
+  <td class="detail-value"><%= @item.shipping_fee.name %></td>
+</tr>
+<tr>
+  <th class="detail-item">発送元の地域</th>
+  <td class="detail-value"><%= @item.region.name %></td>
+</tr>
+<tr>
+  <th class="detail-item">発送日の目安</th>
+  <td class="detail-value"><%= @item.shipping_time.name %></td>
+</tr>
+
       </tbody>
     </table>
     <div class="option">
