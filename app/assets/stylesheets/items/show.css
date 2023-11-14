@@ -205,3 +205,13 @@
   font-weight: bold;
   font-size: 23px;
 }
+.or-text {
+  margin-top: 10px; /* 上のボタンとの間隔 */
+  margin-bottom: 10px; /* 下のボタンとの間隔 */
+  text-align: center; /* 中央揃え */
+}
+.button-container {
+  text-align: center; /* テキストとボタンを中央揃え */
+  margin-top: 10px; /* 上部の余白 */
+  margin-bottom: 10px; /* 下部の余白 */
+}
