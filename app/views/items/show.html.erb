@@ -8,7 +8,6 @@
     </h2>
     <div class="item-img-content">
    <%= image_tag(@item.image.attached? ? @item.image.url : 'default_item.jpg', class: "item-box-img") %>
-    <%# 商品が売れている場合は、sold outを表示しましょう %>
   <% if @item.sold_out? %>
   <% soldout %>
 <% end %>
@@ -26,9 +25,9 @@
  <% if user_signed_in? %>
   <% if current_user.id == @item.user_id %>
     <div class="button-container">
-      <%# <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %> %>
+      <%# <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %> 
       <%# <p class="or-text">or</p> %>
-      <%# <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %> %>
+      <%# <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %> 
     </div>
   <% else %>
     <div class="button-container">
@@ -40,16 +39,16 @@
 
 
    
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+     <span><%= @item.description %></span>
+
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
        <tr>
   <th class="detail-item">出品者</th>
-  <td class="detail-value"><%= @item.user.nickname %></td> <!-- 出品者のユーザーネームを表示 -->
+  <td class="detail-value"><%= @item.user.nickname %></td> 
 </tr>
 
 <tr>
@@ -110,9 +109,9 @@
       後ろの商品 ＞
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+<a href="#" class="another-item"><%= @item.description %>
+
+
 </div>
 
 <%= render "shared/footer" %>
