@@ -13,6 +13,15 @@
   <% soldout %>
 <% end %>
    </span>
+    <div class="item-price-box">
+      <span class="item-price">
+        ¥ 999,999,999
+      </span>
+      <span class="item-postage">
+        <%= "配送料負担" %>
+      </span>
+    </div>
+
  <% if user_signed_in? %>
   <% if current_user.id == @item.user_id %>
     <div class="button-container">
