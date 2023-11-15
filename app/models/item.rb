@@ -22,7 +22,10 @@ class Item < ApplicationRecord
   validates :shipping_time_id, presence: true, inclusion: { in: 0..3 }  # 発送までの日数は0~3の範囲
   validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_time_id, numericality: { other_than: 0, message: 'must be selected' }
 
-  
+   def sold_out?
+    sold
+  end
+
 
   
 end
