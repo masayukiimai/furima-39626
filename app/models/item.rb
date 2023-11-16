@@ -26,7 +26,6 @@ validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_t
 
 
 
-
   
   end
   
