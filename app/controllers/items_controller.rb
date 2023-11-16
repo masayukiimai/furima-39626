@@ -3,6 +3,7 @@
 
 class ItemsController < ApplicationController
  
+
    before_action :set_item, only: [:show, :edit, :update]
    before_action :authenticate_user!, only: [:new, :create, :edit, :update]
    before_action :redirect_unless_owner, only: [:edit, :update]
@@ -31,6 +32,7 @@ class ItemsController < ApplicationController
 def show
 end
 
+
    def edit
    end
 
@@ -41,7 +43,7 @@ end
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
   
   
   private
@@ -58,6 +60,10 @@ def redirect_unless_owner
   redirect_to root_path unless current_user.id == @item.user_id
 end
    
+
+
+
+
 
 
 
