@@ -58,7 +58,7 @@ def redirect_unless_owner
   redirect_to root_path unless current_user.id == @item.user_id
 end
    def move_to_index
-   redirect_to root_path unless user_signed_in? && current_user.id == @item.user_id
+   redirect_to root_path unless current_user.id == @item.user_id
    end
 
 
