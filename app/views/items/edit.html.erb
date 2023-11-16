@@ -18,10 +18,12 @@ app/assets/stylesheets/items/new.css %>
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
+
          <p> 
            クリックしてファイルをアップロード 
          </p> 
          <%= f.file_field :image, id:"item-image" %> 
+
       </div>
     </div>
     <div class="new-items">
@@ -29,13 +31,17 @@ app/assets/stylesheets/items/new.css %>
         商品名
         <span class="indispensable">必須</span>
       </div>
+
        <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %> 
+
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
           <span class="indispensable">必須</span>
         </div>
+
          <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %> 
+
       </div>
     </div>
 
@@ -46,12 +52,16 @@ app/assets/stylesheets/items/new.css %>
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
+
       <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>  
+
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
+
       <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %> 
+
       </div>
     </div>
 
@@ -65,6 +75,7 @@ app/assets/stylesheets/items/new.css %>
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
+
        <%= f.collection_select(:shipping_fee_id, ShippingFee.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>  
          <div class="weight-bold-text">
           発送元の地域
@@ -76,6 +87,7 @@ app/assets/stylesheets/items/new.css %>
           <span class="indispensable">必須</span>
         </div>
        <%= f.collection_select(:shipping_time_id, ShippingTime.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %> 
+
       </div>
     </div>
 
@@ -91,7 +103,9 @@ app/assets/stylesheets/items/new.css %>
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
+<
          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %> 
+=
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
