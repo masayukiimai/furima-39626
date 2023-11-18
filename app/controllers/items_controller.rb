@@ -44,7 +44,8 @@ end
     end
   end
 
-  
+  def delete
+  end
   
   private
   def set_item
