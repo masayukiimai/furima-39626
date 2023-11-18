@@ -4,9 +4,9 @@
 class ItemsController < ApplicationController
  
 
-   before_action :set_item, only: [:show, :edit, :update]
-   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-   before_action :redirect_unless_owner, only: [:edit, :update]
+   before_action :set_item, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+   before_action :redirect_unless_owner, only: [:edit, :update,]
    
   def new
     @item = Item.new
@@ -44,8 +44,16 @@ end
     end
   end
 
-  def delete
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to item_path(@item)
+    end
   end
+
+  
   
   private
   def set_item
