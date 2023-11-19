@@ -4,9 +4,9 @@
 class ItemsController < ApplicationController
  
 
-   before_action :set_item, only: [:show, :edit, :update]
-   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-   before_action :redirect_unless_owner, only: [:edit, :update]
+   before_action :set_item, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+   before_action :redirect_unless_owner, only: [:edit, :update,:destroy]
    
   def new
     @item = Item.new
@@ -44,12 +44,21 @@ end
     end
   end
 
-  
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to item_path(@item)
+    end
+  end
   
   private
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find_by(id: params[:id])
+    redirect_to root_path, alert: "Item not found" if @item.nil?
   end
+  
 
   def item_params
     params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id,  :shipping_fee_id, :region_id, :shipping_time_id).merge(user: current_user)
@@ -74,7 +83,4 @@ end
 
 
 
-  
-
-
-   
+ 
