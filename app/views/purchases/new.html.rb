@@ -7,7 +7,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :prefecture_id, "都道府県" %>
+    <%= f.label :region_id, "都道府県" %>
     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"} %>
   </div>
 

@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_item, only: [:new, :create]
-
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
  
+  def index
+    @purchase_form = PurchaseForm.new
+  end
 
   def create
     @purchase_form = PurchaseForm.new(purchase_params)
@@ -11,24 +13,29 @@ class OrdersController < ApplicationController
       @purchase_form.save
       redirect_to root_path
     else
-      render :index
+      render :index,status: :unprocessable_entity
     end
   end
-  
-  def index
-    @purchase_form = PurchaseForm.new
-  end
-  
+
   private
-  
+
+  def purchase_params
+    params.require(:purchase_form).permit(:postal_code, :region_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
   def set_item
     @item = Item.find(params[:item_id])
   end
-  
-  def purchase_params
-    params.require(:purchase_form).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
-  end
+
   def pay_item
-    # PAY.JPを使用した決済処理をここに記述します
+    Payjp.api_key = 'sk_test_7d79a42bbe701a816c6f985a'
+    begin
+      charge = Payjp::Charge.create(
+        amount: @item.price,
+        card: purchase_params[:token],
+        currency: 'jpy'
+      )
+    rescue Payjp::InvalidRequestError => e
+    end
   end
 end

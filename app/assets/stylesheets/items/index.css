@@ -307,5 +307,13 @@ a {
 .star-count {
   font-size: 2vh;
 }
+.item-img-content {
+  position: relative;
+  /* 必要に応じて他のスタイル */
+}
+
+
+  /* 必要に応じて他のスタイル、例えば背景色、フォントサイズ等 */
+
 
 /* //商品一覧 */

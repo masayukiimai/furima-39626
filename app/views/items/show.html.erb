@@ -21,19 +21,21 @@
   </span>
 </div>
 
-
- <% if user_signed_in? %>
+<% if user_signed_in? %>
   <% if current_user.id == @item.user_id %>
     <div class="button-container">
       <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %> 
       <p class="or-text">or</p> 
-      <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %> 
+      <%= link_to "削除", item_path(@item), method: :delete, class: "item-destroy" %> 
     </div>
   <% elsif !@item.sold_out? %>
-    <%= link_to "購入画面に進む", item_orders_path(@item), class: "item-red-btn" %>
+    <div class="button-container">
+      <%= link_to "購入画面に進む", item_orders_path(@item), data: { turbo: false }, class: "item-red-btn" %>
+    </div>
   <% end %>
 <% end %>
 
+ 
    
  <div class="item-explain-box" style="text-align: center;">
      <span><%= @item.description %></span>
