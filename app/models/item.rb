@@ -25,6 +25,7 @@ validates :region_id, presence: true, inclusion: { in: 1..47 }
 validates :shipping_time_id, presence: true, inclusion: { in: 1..3 } 
 validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_time_id, numericality: { other_than: 0, message: 'must be selected' }
 
+
  
    def sold_out?
     sold
