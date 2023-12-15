@@ -1,5 +1,4 @@
 <%= render "shared/second-header"%>
-<%= render 'shared/error_messages', model: @purchase_form %>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -40,7 +39,7 @@
 <%= form_with model: @purchase_form, url: item_orders_path(@item),  id: 'charge-form', local: true do |f| %>
   <!-- フォームの内容 -->
 
-
+<%= render 'shared/error_messages', model: @purchase_form %>
    <%# カード情報の入力 %>
  <div class='credit-card-form'>
   <h1 class='info-input-haedline'>クレジットカード情報入力</h1>
@@ -54,7 +53,7 @@
       <label class="form-text">カード番号</label>
       <span class="indispensable">必須</span>
     </div>
-    <div id="number-form" class="input-default"></div> <!-- Pay.jp Elements -->
+    <div id="number-form" class="input-default"></div> 
   </div>
 
   <!-- カードロゴ -->

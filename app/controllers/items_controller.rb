@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
    before_action :set_item, only: [:show, :edit, :update, :destroy]
    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
    before_action :redirect_unless_owner, only: [:edit, :update,:destroy]
-   
+   before_action :redirect_if_sold, only: [:edit, :update]
   def new
     @item = Item.new
   end
@@ -56,7 +56,11 @@ end
     @item = Item.find_by(id: params[:id])
     redirect_to root_path, alert: "Item not found" if @item.nil?
   end
-  
+  def redirect_if_sold
+    if @item.order.present?
+      redirect_to root_path
+    end
+  end
   def item_params
     params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id,  :shipping_fee_id, :region_id, :shipping_time_id).merge(user: current_user)
   end

@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
+  has_one :order
+
   has_one_attached :image
   belongs_to_active_hash :condition
   belongs_to_active_hash :category
@@ -27,10 +29,7 @@ validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_t
 
 
  
-   def sold_out?
-    sold
-  end
-
+   
 
 
 

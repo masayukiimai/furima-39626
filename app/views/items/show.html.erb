@@ -20,7 +20,7 @@
     <%= @item.shipping_fee.name %>
   </span>
 </div>
-
+<% if @item.order.blank? %>
 <% if user_signed_in? %>
   <% if current_user.id == @item.user_id %>
     <div class="button-container">
@@ -34,7 +34,10 @@
     </div>
   <% end %>
 <% end %>
+<% end %>
+  <%# 商品が売却済みでない場合に表示されるボタン %>
 
+  
  
    
  <div class="item-explain-box" style="text-align: center;">

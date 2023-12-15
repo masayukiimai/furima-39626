@@ -24,13 +24,13 @@ RSpec.describe PurchaseForm, type: :model do
       it '郵便番号がハイフンなしでは保存できないこと' do
         @purchase_form.postal_code = '1234567'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@purchase_form.errors.full_messages).to include("Postal code is invalid")
       end
 
       it '都道府県が選択されていないと保存できないこと' do
         @purchase_form.region_id = 0
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Region can't be blank")
+        expect(@purchase_form.errors.full_messages).to include("Region must be other than 0")
       end
 
       it '市区町村が空だと保存できないこと' do
@@ -54,15 +54,14 @@ RSpec.describe PurchaseForm, type: :model do
       it '電話番号が12桁以上だと保存できないこと' do
         @purchase_form.phone_number = '123456789012'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchase_form.errors.full_messages).to include("Phone number is invalid")
       end
 
       it '電話番号にハイフンが含まれていると保存できないこと' do
         @purchase_form.phone_number = '090-1234-5678'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@purchase_form.errors.full_messages).to include("Phone number is invalid")
       end
-
       it 'トークンが空だと保存できないこと' do
         @purchase_form.token = nil
         @purchase_form.valid?

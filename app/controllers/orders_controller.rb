@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
- 
+  before_action :redirect_if_not_allowed, only: [:index, :create]
+  
   def index
     @purchase_form = PurchaseForm.new
   end
@@ -26,7 +27,7 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
-
+  
   def pay_item
     Payjp.api_key = 'sk_test_7d79a42bbe701a816c6f985a'
     begin
@@ -38,4 +39,9 @@ class OrdersController < ApplicationController
     rescue Payjp::InvalidRequestError => e
     end
   end
+  def redirect_if_not_allowed
+    if @item.order.present? || current_user == @item.user
+      redirect_to root_path
+    end
+end
 end
