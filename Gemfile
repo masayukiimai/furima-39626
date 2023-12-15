@@ -87,3 +87,4 @@ gem 'devise'
 gem 'pry-rails'
 
 gem 'payjp'
+gem 'dotenv-rails', groups: [:development, :test]

@@ -22,5 +22,5 @@ validates :birthday, presence: true
           validates :first_name_kana, format: { with: VALID_KANA_REGEX, message: 'はカタカナで入力してください' }
           
           has_many :items
-
+          has_many :orders
 end
