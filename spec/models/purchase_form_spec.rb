@@ -12,6 +12,11 @@ RSpec.describe PurchaseForm, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@purchase_form).to be_valid
       end
+
+      it '建物名が空でも保存できること' do
+        @purchase_form.building = ''
+        expect(@purchase_form).to be_valid
+      end
     end
 
     context '購入情報が保存できない場合' do
@@ -69,17 +74,12 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchase_form.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it '建物名が空でも保存できること' do
-        @purchase_form.building = ''
-        expect(@purchase_form).to be_valid
-      end
-
       it 'トークンが空だと保存できないこと' do
         @purchase_form.token = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
       end
-    end  # context '購入情報が保存できない場合' の終了
+    end
 
     it 'userが紐付いていなければ購入できないこと' do
       @purchase_form.user_id = nil
@@ -92,5 +92,5 @@ RSpec.describe PurchaseForm, type: :model do
       @purchase_form.valid?
       expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
     end
-  end  # describe '購入情報の保存' の終了
+  end
 end
