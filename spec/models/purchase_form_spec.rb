@@ -20,6 +20,17 @@ RSpec.describe PurchaseForm, type: :model do
     end
 
     context '購入情報が保存できない場合' do
+      it 'userが紐付いていなければ購入できないこと' do
+        @purchase_form.user_id = nil
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("User can't be blank")
+      end
+  
+      it 'itemが紐付いていなければ購入できないこと' do
+        @purchase_form.item_id = nil
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
+      end
       it '郵便番号が空だと保存できないこと' do
         @purchase_form.postal_code = nil
         @purchase_form.valid?
@@ -79,18 +90,6 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
       end
-    end
-
-    it 'userが紐付いていなければ購入できないこと' do
-      @purchase_form.user_id = nil
-      @purchase_form.valid?
-      expect(@purchase_form.errors.full_messages).to include("User can't be blank")
-    end
-
-    it 'itemが紐付いていなければ購入できないこと' do
-      @purchase_form.item_id = nil
-      @purchase_form.valid?
-      expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
     end
   end
 end
