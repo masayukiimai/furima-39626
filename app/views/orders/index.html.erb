@@ -6,7 +6,7 @@
       購入内容の確認
     </h1>
     <%# 購入内容の表示 %>
-    <% if @item %>
+    
    <div class='buy-item-info'>
   <%= image_tag @item.image, class: 'buy-item-img' %>
   <div class='buy-item-right-content'>
@@ -17,9 +17,6 @@
     
       <p class='item-price-sub-text'><%= @item.shipping_fee.name %></p>
     </div>
-    <% else %>
-  <p>商品が見つかりません。</p>
-<% end %>
   </div>
 </div>
 
