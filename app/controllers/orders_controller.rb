@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :redirect_if_not_allowed, only: [:index, :create]
   
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @purchase_form = PurchaseForm.new
   end
 
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
       @purchase_form.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index,status: :unprocessable_entity
     end
   end
