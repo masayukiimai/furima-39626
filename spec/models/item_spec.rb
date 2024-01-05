@@ -62,8 +62,8 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
   end
 
-  it 'region_idが空だと保存できない' do
-      @item.region_id = nil
+  it 'prefecture_iddが空だと保存できない' do
+      @item.prefecture_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Region can't be blank")
   end
@@ -98,7 +98,7 @@ RSpec.describe Item, type: :model do
   end
 
   it '発送元の地域が---では出品できない' do
-    @item.region_id = 0 
+    @item.prefecture_id = 0 
     @item.valid?
     expect(@item.errors.full_messages).to include('Region must be selected')
   end

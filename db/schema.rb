@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_04_113517) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_13_105619) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,12 +47,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_113517) do
     t.integer "condition_id", null: false
     t.integer "shipping_fee_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "delivery_time_id", null: false
+    t.integer "shipping_time_id", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "sold"
-    t.integer "region_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -69,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_04_113517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "postal_code", null: false
-    t.integer "region_id", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"

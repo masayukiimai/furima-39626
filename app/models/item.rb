@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :condition
   belongs_to_active_hash :category
   belongs_to_active_hash :shipping_fee
-  belongs_to_active_hash :region
+  belongs_to_active_hash :prefecture
   belongs_to_active_hash :shipping_time
   validates :image, presence: true
   validates :name, presence: true
@@ -23,9 +23,9 @@ class Item < ApplicationRecord
     validates :category_id, presence: true, inclusion: { in: 1..10 }  
 validates :condition_id, presence: true, inclusion: { in: 1..6 } 
 validates :shipping_fee_id, presence: true, inclusion: { in: 1..2 }  
-validates :region_id, presence: true, inclusion: { in: 1..47 }  
+validates :prefecture_id, presence: true, inclusion: { in: 1..47 }  
 validates :shipping_time_id, presence: true, inclusion: { in: 1..3 } 
-validates :category_id, :condition_id, :shipping_fee_id, :region_id, :shipping_time_id, numericality: { other_than: 0, message: 'must be selected' }
+validates :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_time_id, numericality: { other_than: 0, message: 'must be selected' }
 
 
 

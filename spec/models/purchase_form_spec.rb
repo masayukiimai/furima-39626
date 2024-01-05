@@ -44,7 +44,7 @@ RSpec.describe PurchaseForm, type: :model do
       end
 
       it '都道府県が選択されていないと保存できないこと' do
-        @purchase_form.region_id = 0
+        @purchase_form.prefecture_id = 0
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include("Region must be other than 0")
       end
