@@ -65,7 +65,7 @@ RSpec.describe Item, type: :model do
   it 'prefecture_iddが空だと保存できない' do
       @item.prefecture_id = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Region can't be blank")
+      expect(@item.errors.full_messages).to include("Prefecture can't be blank")
   end
 
   it 'shipping_time_idが空だと保存できない' do
@@ -100,7 +100,7 @@ RSpec.describe Item, type: :model do
   it '発送元の地域が---では出品できない' do
     @item.prefecture_id = 0 
     @item.valid?
-    expect(@item.errors.full_messages).to include('Region must be selected')
+    expect(@item.errors.full_messages).to include('Prefecture must be selected')
   end
 
   it '発送までの日数が---では出品できない' do
